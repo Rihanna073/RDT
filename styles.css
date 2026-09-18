@@ -1,0 +1,1204 @@
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+  --tierra: #8c6d46;
+  --verde: #2d5a27;
+  --verde-oscuro: #1d3d1a;
+  --dorado: #d4a373;
+  --dorado-claro: #ead1b2;
+
+  --crema: #f8f4ed;
+  --blanco: #fffdf8;
+  --texto: #30382f;
+  --gris: #5a6259;
+
+  --borde: rgba(140, 109, 70, 0.2);
+  --sombra: 0 15px 40px rgba(35, 56, 32, 0.08);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+
+  background: var(--verde-oscuro);
+  color: white;
+
+  padding: 12px 18px;
+  border-radius: 4px;
+
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.boton:focus-visible {
+  outline: 3px solid var(--dorado);
+  outline-offset: 3px;
+}
+
+body {
+  font-family: "DM Sans", Arial, sans-serif;
+  color: var(--texto);
+  background: var(--blanco);
+  line-height: 1.7;
+
+  /* Evita desplazamiento horizontal */
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.contenedor {
+  width: min(1120px, 90%);
+  margin: 0 auto;
+}
+
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+
+/* =========================================================
+   TIPOGRAFÍA
+========================================================= */
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  max-width: 750px;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--verde);
+}
+
+h3 {
+  color: var(--verde);
+  font-size: clamp(1.25rem, 2vw, 1.45rem);
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+.etiqueta {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: var(--dorado-claro);
+  margin-bottom: 12px;
+}
+
+.etiqueta.oscuro {
+  color: var(--tierra);
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 13px 24px;
+
+  border-radius: 4px;
+
+  background: var(--tierra);
+  color: white;
+
+  font-weight: 700;
+
+  border: none;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  /* Evita que el texto rompa el botón */
+  text-align: center;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  background: #785c38;
+  box-shadow: 0 10px 20px rgba(140, 109, 70, 0.2);
+}
+
+.boton-secundario {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.boton-secundario:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+
+  color: white;
+
+  background: rgba(20, 42, 18, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav {
+  min-height: 75px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.logo {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(1rem, 2vw, 1.25rem);
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+
+  gap: clamp(4px, 2vw, 12px);
+
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+nav a {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 44px;
+  padding: 8px 10px;
+
+  font-size: 0.88rem;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  transition: 0.25s;
+
+  white-space: nowrap;
+}
+
+nav a:hover {
+  color: white;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  min-height: 700px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: var(--verde-oscuro);
+
+  color: white;
+}
+
+.hero-fondo {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20, 42, 18, 0.98) 0%,
+      rgba(20, 42, 18, 0.92) 60%,
+      rgba(20, 42, 18, 0.55) 100%
+    ),
+    url("imagenes/atardecer.webp") center / cover;
+
+  opacity: 0.96;
+}
+
+@media (min-width: 1600px) {
+  .hero-fondo {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(20, 42, 18, 0.98) 0%,
+        rgba(20, 42, 18, 0.94) 70%,
+        rgba(20, 42, 18, 0.6) 100%
+      ),
+      url("imagenes/atardecer.webp") center / cover;
+  }
+}
+
+.hero-contenido {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(280px, 0.8fr);
+
+  align-items: center;
+
+  gap: clamp(30px, 5vw, 55px);
+
+  padding-top: 75px;
+}
+
+.hero-texto {
+  min-width: 0;
+}
+
+.hero-descripcion {
+  max-width: 600px;
+
+  margin: 20px 0 28px;
+
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-botones {
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.hero-imagen {
+  width: min(100%, 430px);
+
+  margin-left: auto;
+
+  background: white;
+
+  padding: 10px;
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+
+  transform: rotate(1.5deg);
+
+  border-radius: 2px;
+}
+
+.hero-imagen img {
+  width: 100%;
+
+  height: clamp(300px, 40vw, 430px);
+
+  object-fit: cover;
+}
+
+.hero-imagen figcaption {
+  color: #3c443f;
+
+  padding: 9px 7px 2px;
+
+  font-size: 0.72rem;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   HISTORIA
+========================================================= */
+
+.introduccion {
+  padding: clamp(60px, 8vw, 85px) 0;
+
+  background: var(--crema);
+}
+
+.dos-columnas {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.8fr)
+    minmax(0, 1.2fr);
+
+  gap: clamp(30px, 5vw, 55px);
+}
+
+.dos-columnas > * {
+  min-width: 0;
+}
+
+.texto-grande {
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
+
+  color: var(--gris);
+}
+
+.texto-grande p + p {
+  margin-top: 16px;
+}
+
+.texto-grande strong {
+  color: var(--verde);
+}
+
+.texto-grande.claro {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.texto-grande.claro strong {
+  color: var(--dorado-claro);
+}
+
+
+/* =========================================================
+   CRIATURAS
+========================================================= */
+
+.criaturas {
+  padding: clamp(60px, 8vw, 85px) 0;
+
+  background: var(--blanco);
+}
+
+.encabezado-seccion {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 0.75fr);
+
+  gap: 35px;
+
+  align-items: end;
+
+  margin-bottom: 40px;
+}
+
+.encabezado-seccion > * {
+  min-width: 0;
+}
+
+.tarjetas {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.tarjeta {
+  min-width: 0;
+
+  padding: 28px 25px;
+
+  border: 1px solid var(--borde);
+
+  background: white;
+
+  border-radius: 4px;
+
+  transition: 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+
+  box-shadow: var(--sombra);
+
+  border-color: var(--tierra);
+}
+
+.icono-criatura-svg {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--tierra);
+
+  background: var(--crema);
+
+  border-radius: 6px;
+
+  margin-bottom: 18px;
+}
+
+.tarjeta h3 {
+  margin-bottom: 10px;
+}
+
+.tarjeta p {
+  color: var(--gris);
+
+  font-size: 0.92rem;
+}
+
+.palabra-clave {
+  display: inline-block;
+
+  margin-top: 17px;
+
+  color: var(--tierra);
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   GALERÍA
+========================================================= */
+
+.galeria {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(0, 0.75fr);
+
+  min-height: 440px;
+}
+
+.galeria-imagen {
+  position: relative;
+
+  overflow: hidden;
+
+  min-height: 440px;
+}
+
+.galeria-imagen img {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.8s ease;
+}
+
+.galeria-imagen:hover img {
+  transform: scale(1.05);
+}
+
+.galeria-imagen::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      transparent 30%,
+      rgba(20, 40, 18, 0.88)
+    );
+}
+
+.galeria-texto {
+  position: absolute;
+
+  z-index: 2;
+
+  left: clamp(20px, 4vw, 35px);
+  right: 20px;
+
+  bottom: 32px;
+
+  color: white;
+}
+
+.galeria-texto span {
+  font-size: 0.7rem;
+
+  letter-spacing: 0.16em;
+
+  font-weight: 700;
+
+  color: var(--dorado-claro);
+}
+
+.galeria-texto h2 {
+  color: white;
+
+  margin-top: 6px;
+
+  font-size: clamp(1.7rem, 3vw, 3rem);
+}
+
+
+/* =========================================================
+   POEMA
+========================================================= */
+
+.poema {
+  padding: clamp(65px, 8vw, 90px) 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--verde-oscuro),
+      var(--verde)
+    );
+}
+
+.poema-contenedor {
+  width: min(850px, 90%);
+}
+
+.poema-introduccion {
+  text-align: center;
+
+  color: white;
+
+  margin-bottom: 35px;
+}
+
+.poema-introduccion h2 {
+  color: white;
+
+  margin-bottom: 12px;
+}
+
+.poema-introduccion > p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pergamino {
+  width: 100%;
+
+  background: #f7f1e5;
+
+  padding: clamp(30px, 6vw, 50px);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+
+  position: relative;
+
+  border-radius: 2px;
+}
+
+.pergamino::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 14px;
+
+  border: 1px solid rgba(140, 109, 70, 0.25);
+
+  pointer-events: none;
+}
+
+.pergamino-cabecera {
+  position: relative;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid rgba(140, 109, 70, 0.25);
+
+  color: var(--tierra);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.12em;
+
+  font-weight: 700;
+}
+
+.poema-texto {
+  position: relative;
+
+  padding: 32px 8px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(1rem, 1.8vw, 1.08rem);
+
+  color: #3b332a;
+}
+
+.poema-texto p {
+  margin-bottom: 18px;
+}
+
+.poema-texto p:first-of-type::first-letter {
+  font-size: 3.2rem;
+
+  float: left;
+
+  line-height: 0.8;
+
+  margin-right: 10px;
+
+  color: var(--tierra);
+
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.poema-firma {
+  position: relative;
+
+  text-align: right;
+
+  color: var(--tierra);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-style: italic;
+
+  font-size: 1rem;
+}
+
+
+/* =========================================================
+   ECOLOGÍA
+========================================================= */
+
+.ecologia {
+  padding: clamp(60px, 8vw, 85px) 0;
+
+  background: var(--verde-oscuro);
+
+  color: white;
+}
+
+.ecologia h2 {
+  color: white;
+}
+
+.dato-ecologico {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  margin-top: 28px;
+
+  padding: 20px;
+
+  border-left: 2px solid var(--dorado);
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dato-ecologico strong {
+  flex-shrink: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  color: var(--dorado);
+
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+}
+
+.dato-ecologico span {
+  color: rgba(255, 255, 255, 0.8);
+
+  font-size: 0.88rem;
+}
+
+
+/* =========================================================
+   FUENTES Y AUTORÍA
+========================================================= */
+
+.fuentes-autor {
+  padding: 45px 0;
+
+  background: #4d6b48;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bloque-autor p {
+  font-size: 0.9rem;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  max-width: 650px;
+}
+
+.enlaces-fuentes a {
+  display: inline-block;
+
+  margin-top: 10px;
+
+  font-size: 0.86rem;
+
+  color: var(--dorado-claro);
+
+  text-decoration: underline;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  background: var(--verde-oscuro);
+
+  color: white;
+
+  padding: 35px 0;
+}
+
+.footer-contenido {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 25px;
+}
+
+.footer strong {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 1.05rem;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    min-height: auto;
+    padding: 12px 0;
+  }
+
+  .hero {
+    min-height: auto;
+
+    padding: 120px 0 60px;
+  }
+
+  .hero-contenido {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+
+    padding-top: 20px;
+  }
+
+  .hero-texto {
+    max-width: 750px;
+  }
+
+  .hero-imagen {
+    margin: 0 auto;
+
+    width: min(480px, 100%);
+  }
+
+  .hero-imagen img {
+    height: min(480px, 65vw);
+  }
+
+  .dos-columnas {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .encabezado-seccion {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .tarjetas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+
+  .galeria-imagen {
+    min-height: 380px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .contenedor {
+    width: min(92%, 500px);
+  }
+
+
+  /* HEADER */
+
+  .header {
+    position: absolute;
+  }
+
+  .nav {
+    min-height: auto;
+
+    padding: 15px 0;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+  }
+
+  .logo {
+    white-space: normal;
+
+    text-align: center;
+
+    font-size: 1.05rem;
+  }
+
+  nav ul {
+    width: 100%;
+
+    justify-content: center;
+
+    gap: 4px 10px;
+  }
+
+  nav a {
+    font-size: 0.78rem;
+    padding: 8px;
+  }
+
+
+  /* HERO */
+
+  .hero {
+    padding: 160px 0 55px;
+  }
+
+  .hero-contenido {
+    gap: 35px;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 9vw, 2.6rem);
+  }
+
+  .hero-descripcion {
+    font-size: 0.95rem;
+
+    margin: 18px 0 24px;
+  }
+
+  .hero-botones {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .boton {
+    width: 100%;
+  }
+
+  .hero-imagen {
+    width: 100%;
+
+    transform: rotate(0);
+  }
+
+  .hero-imagen img {
+    height: 350px;
+  }
+
+
+  /* HISTORIA */
+
+  .introduccion {
+    padding: 60px 0;
+  }
+
+  .dos-columnas {
+    gap: 25px;
+  }
+
+
+  /* CRIATURAS */
+
+  .criaturas {
+    padding: 60px 0;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .tarjeta {
+    padding: 25px 22px;
+  }
+
+
+  /* GALERÍA */
+
+  .galeria-imagen {
+    min-height: 320px;
+  }
+
+  .galeria-texto {
+    left: 22px;
+
+    bottom: 25px;
+  }
+
+
+  /* POEMA */
+
+  .poema {
+    padding: 60px 0;
+  }
+
+  .poema-contenedor {
+    width: 92%;
+  }
+
+  .pergamino {
+    padding: 30px 22px;
+  }
+
+  .pergamino::before {
+    inset: 10px;
+  }
+
+  .pergamino-cabecera {
+    flex-direction: column;
+
+    gap: 6px;
+
+    font-size: 0.62rem;
+  }
+
+  .poema-texto {
+    padding: 25px 5px;
+
+    font-size: 1rem;
+  }
+
+  .poema-texto p:first-of-type::first-letter {
+    font-size: 2.7rem;
+  }
+
+
+  /* ECOLOGÍA */
+
+  .ecologia {
+    padding: 60px 0;
+  }
+
+  .dato-ecologico {
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 17px;
+  }
+
+  .dato-ecologico strong {
+    font-size: 1.8rem;
+  }
+
+
+  /* FUENTES */
+
+  .fuentes-autor {
+    padding: 40px 0;
+  }
+
+
+  /* FOOTER */
+
+  .footer {
+    padding: 30px 0;
+  }
+
+  .footer-contenido {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+  nav ul {
+    gap: 4px 8px;
+  }
+
+  nav a {
+    font-size: 0.72rem;
+    padding: 6px;
+  }
+
+  .hero {
+    padding-top: 175px;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero-imagen img {
+    height: 290px;
+  }
+
+  .tarjeta {
+    padding: 22px 18px;
+  }
+
+  .galeria-imagen {
+    min-height: 280px;
+  }
+
+  .pergamino {
+    padding: 25px 17px;
+  }
+
+  .dato-ecologico {
+    flex-direction: column;
+  }
+}
